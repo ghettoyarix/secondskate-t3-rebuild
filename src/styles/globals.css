@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: "Poppins", sans-serif;
+}
+svg {
+  cursor: pointer;
+}
+.wrapper {
+  margin-right: auto;
+  margin-left: auto;
+
+  max-width: 1120px;
+}
+body {
+  font-family: "DM_Sans", sans-serif;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@layer components {
+  .input-profile {
+    @apply mt-1 block w-full rounded-md border-gray shadow-sm outline outline-2 outline-gray  focus:border-indigo-300 focus:outline-primary focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
+}
