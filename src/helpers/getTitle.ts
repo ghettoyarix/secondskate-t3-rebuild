@@ -1,4 +1,4 @@
-import type { Title, Option } from "~/models/FilterOptions";
+import type { Title, Option } from "src/models/FilterOptions";
 function getTitle(obj: Option, chosenLanguage: "ua" | "eng"): string {
   let result;
 
@@ -7,11 +7,11 @@ function getTitle(obj: Option, chosenLanguage: "ua" | "eng"): string {
   } else {
     if (typeof obj === "string") {
       result = obj;
-    } else {
+    } else if (obj?.title?.[chosenLanguage]) {
       result = obj?.title[chosenLanguage];
     }
   }
 
-  return result;
+  return result || "";
 }
 export default getTitle;

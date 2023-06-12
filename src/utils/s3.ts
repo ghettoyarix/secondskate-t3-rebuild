@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import S3 from "aws-sdk/clients/s3";
 import { randomUUID } from "crypto";
-import { type PresignedLink } from "~/server/models/general";
-import { env } from "~/utils/env.mjs";
+import { type PresignedLink } from "src/server/models/general";
+import { env } from "src/utils/env.mjs";
 type URLResponse = { URL: string; key: string };
 interface IDeleteObject {
   folderName: Folder;
@@ -10,7 +10,7 @@ interface IDeleteObject {
   unitId: string;
 }
 type FileKey = string;
-import type { Folder } from "~/server/models/products";
+import type { Folder } from "src/server/models/products";
 const BUCKET_NAME = env.BUCKET_NAME;
 const s3 = new S3({
   apiVersion: "2006-03-01",

@@ -1,5 +1,5 @@
-import React, { ReactNode, ReactElement } from 'react';
-import cn from 'classnames';
+import React, { ReactNode, ReactElement } from "react";
+import cn from "classnames";
 
 type LabelProps = {
   children: ReactNode;
@@ -7,17 +7,22 @@ type LabelProps = {
   classNames?: string;
 };
 
-const Label = ({ children, secondary, classNames }: LabelProps): ReactElement => {
+const Label = ({
+  children,
+  secondary,
+  classNames,
+}: LabelProps): ReactElement => {
   return (
     <p
       className={cn(
-        'text-lable my-auto align-middle bg-white content-center whitespace-nowrap	 font-bold  outline outline-2 p-[2px] px-1 rounded-[4px]',
+        "my-auto content-center whitespace-nowrap rounded-[4px] border border-2	 bg-white  p-[2px] px-1 align-middle text-lable font-bold",
         {
-          'outline-gray text-gray': secondary,
+          "border-gray text-gray": secondary,
         },
-        { 'outline-green text-green': !secondary },
-        classNames,
-      )}>
+        { "border-green text-green": !secondary },
+        classNames
+      )}
+    >
       <span>{children}</span>
     </p>
   );

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Button from "~/components/UI/Button";
-import CheckmarkLoader from "~/components/widgets/CheckmarkLoader";
-import { useBidContext } from "~/context/BidContext";
-import { api } from "~/utils/api";
+import Button from "src/components/UI/Button";
+import CheckmarkLoader from "src/components/widgets/CheckmarkLoader";
+import { useBidContext } from "src/context/BidContext";
+import { api } from "src/utils/api";
+import useFetchProducts from "src/hooks/useFetchProducts";
 const RemoveBid = () => {
+  const { refetch } = useFetchProducts();
   const { mutate: deleteProduct, error } =
     api.product.deleteProduct.useMutation();
   const { setDeletionInitiated, setIsDeleted, deletionInitiated, product } =
@@ -19,6 +21,7 @@ const RemoveBid = () => {
         {
           onSuccess: () => {
             setIsDeleted(true);
+            void refetch();
           },
         }
       );

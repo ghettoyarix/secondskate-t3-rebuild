@@ -3,14 +3,15 @@ import Label from "../Label";
 import Image from "next/image";
 import cn from "classnames";
 import HyperLink from "../../widgets/HyperLink";
-import { parseBidTitle } from "~/helpers/parseTittle";
+import { parseBidTitle } from "src/helpers/parseTittle";
 
-import { useBidContext } from "~/context/BidContext";
+import { useBidContext } from "src/context/BidContext";
 
 const InfoBlock = () => {
   const { product } = useBidContext();
+
   const { id, title, category, type, price, size, condition, brand, owner } =
-    product;
+    product!;
 
   return (
     <div className="px-2">
@@ -30,13 +31,13 @@ const InfoBlock = () => {
         <p className="text-gray ">{brand || "--"}</p>
         <p className="font-semibold">{size}</p>
       </div>
-      <div className="my-3 flex  justify-center  gap-2">
+      <div className="my-3 flex  items-center justify-center  gap-2">
         <Image
           className={cn("rounded-full    border-4 border-white  ")}
           alt="1"
           height={24}
           width={24}
-          src={`/svg/no-profile-picture.svg`}
+          src={`/svg/user.svg`}
         ></Image>
 
         <HyperLink path={`/profile/${owner?.username || "404"}`}>

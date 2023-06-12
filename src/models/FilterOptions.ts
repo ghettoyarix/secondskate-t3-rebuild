@@ -1,4 +1,4 @@
-import { type SortDirection } from "~/server/models/products";
+import { type SortDirection } from "src/server/models/products";
 interface DiscoverCategory {
   title: Title;
   category: string;

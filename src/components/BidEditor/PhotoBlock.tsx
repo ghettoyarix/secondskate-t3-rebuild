@@ -1,27 +1,29 @@
 import React, { useEffect } from "react";
 
 import Dropzone from "react-dropzone";
-import Dragger from "~/components/widgets/Dragger";
+import Dragger from "src/components/widgets/Dragger";
 
-import { useUpload } from "~/context/UploadContext";
-
+import { useUpload } from "src/context/UploadContext";
+import { getImageUrl } from "src/helpers/getImageUrl";
 const PhotoBlock = () => {
-  const { setMainPhoto, files, setFiles } = useUpload();
+  const {
+    setMainPhoto,
+    files,
+    setFiles,
+    product,
+    mergedArray,
+    setMergedArray,
+  } = useUpload();
 
   const handleFilesChange = (acceptedFiles: File[]) => {
     if (files.length < 4) {
       setFiles([...files, ...acceptedFiles]);
     }
   };
-  useEffect(() => {
-    if (files.length > 0 && files[0] !== undefined) {
-      setMainPhoto(URL.createObjectURL(files[0]));
-    }
-  }, [files]);
 
-  const filterFiles = (obj: File) => {
-    const filteredFiles = files.filter((file) => file !== obj);
-    setFiles(filteredFiles);
+  const filterFiles = (obj: File | string) => {
+    const filteredFiles = mergedArray.filter((file) => file !== obj);
+    setMergedArray(filteredFiles);
     if (files.length == 1) {
       setMainPhoto("");
     }
@@ -30,9 +32,15 @@ const PhotoBlock = () => {
   return (
     <>
       <div>
-        <h2 className="Upload file">Drag or choose your file to upload</h2>
+        <h2
+          onClick={() => console.log(mergedArray, files)}
+          className="Upload file"
+        >
+          Drag or choose your file to upload
+        </h2>
         <p className="text-reg text-gray">Drag or choose your file to upload</p>
       </div>
+
       <Dropzone
         maxFiles={4}
         onDrop={(acceptedFiles) => handleFilesChange(acceptedFiles)}
@@ -71,8 +79,10 @@ const PhotoBlock = () => {
         )}
       </Dropzone>
       <Dragger
-        updateArray={setFiles}
-        providedArray={files || []}
+        updateArray={(object) => {
+          setMergedArray(object);
+        }}
+        providedArray={mergedArray || []}
         removeItem={filterFiles}
       ></Dragger>
     </>

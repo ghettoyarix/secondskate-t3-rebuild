@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { type ReactNode } from "react";
-import { type ProductWithOwner } from "~/server/models/products";
-import { api } from "~/utils/api";
+import { type ProductWithOwner } from "src/server/models/products";
+import { api } from "src/utils/api";
 interface Account {
   username: string;
   title: string;

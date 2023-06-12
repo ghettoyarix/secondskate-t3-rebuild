@@ -40,6 +40,6 @@ input::-webkit-inner-spin-button {
 
 @layer components {
   .input-profile {
-    @apply mt-1 block w-full rounded-md border-gray shadow-sm outline outline-2 outline-gray  focus:border-indigo-300 focus:outline-primary focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    @apply mt-1 block w-full rounded-md border border-2 border-gray border-gray shadow-sm  focus:border-indigo-300 focus:border-primary focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
 }

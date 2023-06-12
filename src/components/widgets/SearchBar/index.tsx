@@ -1,22 +1,16 @@
 import React, { useRef, useState } from "react";
 import SearchWindow from "./SearchWindow";
-import { useHeader } from "~/context/HeaderContext";
+import { useHeader } from "src/context/HeaderContext";
 
 import { debounce } from "lodash";
-
+import { useDiscoverStore } from "~/zustand";
 const SearchBar = () => {
-  const {
-    setSearchedValue,
-    setOpenFlag,
-    openFlag,
-    clearProducts,
-    productsFound,
-  } = useHeader();
+  const { setTitle } = useDiscoverStore();
   const [innerSearchValue, setInnerSearchValue] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
   const changeSearchedValue = React.useCallback(
     debounce((value: string) => {
-      setSearchedValue(value);
+      setTitle(value);
     }, 500),
     []
   );
@@ -25,32 +19,22 @@ const SearchBar = () => {
       const value = searchRef.current.value.trim();
       setInnerSearchValue(value);
       changeSearchedValue(value);
-      setOpenFlag(true);
-    } else {
-      setOpenFlag(false);
-    }
-  };
-  const handleBarClick = () => {
-    if (!openFlag) {
-      setOpenFlag(true);
     }
   };
 
   return (
     <div
       className=" outilne-1 outkub z-20 flex h-10 w-[256px] items-center justify-between
-    rounded-sm px-2 text-[12px] font-[400] outline outline-lightGray "
+    rounded-sm border border-lightGray px-2 text-[12px] font-[400] "
     >
       <input
-        onClick={handleBarClick}
         ref={searchRef}
         onChange={handleChange}
-        className="w-full focus:outline-none"
+        className="w-full focus:border-none"
         type="text"
         placeholder="Search"
       ></input>
       <svg
-        onClick={() => console.log(productsFound)}
         width="18"
         height="18"
         viewBox="0 0 18 18"
@@ -71,7 +55,6 @@ const SearchBar = () => {
           fill="#777E91"
         />
       </svg>
-      <SearchWindow searched={innerSearchValue}></SearchWindow>
     </div>
   );
 };

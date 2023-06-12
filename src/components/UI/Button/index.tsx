@@ -1,7 +1,7 @@
 import cn from "classnames";
 import React, { useState, useEffect } from "react";
-import PingCircle from "~/components/widgets/PingCircle";
-import CircleLoader from "~/components/widgets/CircleLoader";
+import PingCircle from "src/components/widgets/PingCircle";
+import CircleLoader from "src/components/widgets/CircleLoader";
 
 type ButtonProps = {
   onClick?: () => void;
@@ -44,9 +44,9 @@ const Button = (props: ButtonProps): JSX.Element => {
     <button
       onClick={onClick}
       className={cn(
-        "text-14px relative my-1 flex items-center justify-center gap-2 self-center rounded-[90px] border-2  border-lightGray px-4    py-3 text-center font-bold hover:border-primary hover:outline-primary hover:drop-shadow-2xl   ",
+        "text-14px relative my-1 flex items-center justify-center gap-2 self-center rounded-[90px] border-2  border-lightGray px-4    py-3 text-center font-bold hover:border-primary hover:border-primary hover:drop-shadow-2xl   ",
         {
-          "border-primary  bg-primary text-white  hover:bg-white hover:text-black hover:outline-black ":
+          "border-primary  bg-primary text-white  hover:border-black hover:bg-white hover:text-black ":
             primary,
         },
         { "w-full": expansive },

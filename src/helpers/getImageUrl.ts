@@ -1,4 +1,4 @@
-import { env } from "~/utils/env.mjs";
+import { env } from "src/utils/env.mjs";
 
 export const getImageUrl = (
   fileKey: string | undefined | null

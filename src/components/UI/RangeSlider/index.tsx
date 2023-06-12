@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { debounce } from "lodash";
 
-import { useDiscoverStore, type PriceRange } from "~/zustand/discover";
-import useDisableScrollOnInput from "~/helpers/useDisableInputScroll";
+import { useDiscoverStore, type PriceRange } from "src/zustand/discover";
+import useDisableScrollOnInput from "src/helpers/useDisableInputScroll";
 const PriceRangeInput = () => {
   const maxRef = useRef<HTMLInputElement>(null);
   const minRef = useRef<HTMLInputElement>(null);
@@ -33,9 +33,9 @@ const PriceRangeInput = () => {
           onChange={handleChange}
           placeholder={"0"}
           className="bg-whie text-sm  hover:bg-gray-50  focus:ring-offset-gray-100 inline-flex h-12 
-          w-full items-center  justify-center rounded-xl px-4  font-medium text-indigo-500 shadow-sm outline 
-          outline-2 outline-gray 
-          focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          w-full items-center  justify-center rounded-xl border  border-2 border-gray px-4 font-medium 
+          text-indigo-500 shadow-sm 
+          focus:border-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         />
       </div>
       <div className="flex h-full flex-col justify-between">
@@ -47,9 +47,9 @@ const PriceRangeInput = () => {
           onChange={handleChange}
           placeholder={"99999"}
           className="bg-whie text-sm  hover:bg-gray-50  focus:ring-offset-gray-100 inline-flex h-12 
-          w-full items-center  justify-center rounded-xl px-4  font-medium text-indigo-500 shadow-sm  outline 
-          outline-2 outline-gray 
-          focus:outline-none focus:ring-2     focus:ring-indigo-500 focus:ring-offset-2"
+          w-full items-center  justify-center rounded-xl border  border-2 border-gray px-4  font-medium 
+          text-indigo-500 shadow-sm 
+          focus:border-none focus:ring-2     focus:ring-indigo-500 focus:ring-offset-2"
         />
       </div>
     </div>

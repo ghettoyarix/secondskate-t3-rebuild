@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import Bid from "~/components/UI/Bid";
-import BidLoader from "~/components/UI/loaders/BidLoader";
+import Bid from "src/components/UI/Bid";
+import BidLoader from "src/components/UI/loaders/BidLoader";
 import NothingFound from "./NothingFound";
 import Grid from "./Grid";
 
 import { useInView } from "react-intersection-observer";
 
-import useClock from "~/helpers/useClock";
+import useClock from "src/helpers/useClock";
 
-import { PAGE_LIMIT } from "~/constants/products";
+import { PAGE_LIMIT } from "src/constants/products";
 import { useRouter } from "next/router";
-import { useProductsStore } from "~/zustand";
-import useFetchProducts from "~/hooks/useFetchProducts";
+import { useProductsStore } from "src/zustand";
+import useFetchProducts from "src/hooks/useFetchProducts";
 
 const BidsGrid = () => {
   const { products } = useProductsStore();
@@ -59,9 +59,6 @@ const BidsGrid = () => {
   }
   return (
     <>
-      <p className="ml-2 mt-2 text-mid">
-        Products found : {data?.pages[0]!.totalProducts}
-      </p>
       <Grid>
         {productList}
         {isLoading &&

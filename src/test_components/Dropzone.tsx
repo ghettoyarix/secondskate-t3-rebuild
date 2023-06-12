@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-import { useUploadProducts } from "~/hooks/useUploadProducts";
+import { useUploadProducts } from "src/hooks/useUploadProducts";
 function Dropzone() {
   const { uploadProductMutation } = useUploadProducts();
   const { mutateAsync: uploadProduct } = uploadProductMutation;

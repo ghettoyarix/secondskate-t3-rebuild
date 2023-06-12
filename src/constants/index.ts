@@ -1,4 +1,4 @@
-import type { Option, SortOption } from "~/models/FilterOptions";
+import type { Option, SortOption } from "src/models/FilterOptions";
 const CATEGORIES_PARSER: Option[] = [
   { title: { eng: "Decks", ua: "Дошки" }, value: "decks" },
   { title: { eng: "Trucks", ua: "Підвіски" }, value: "trucks" },
@@ -156,6 +156,29 @@ export const SORT_OPTIONS = DATE_SORT_OPTIONS.concat(PRICE_SORT_OPTIONS);
 const DISCOVER_CONDITIONS: Option[] = [
   { title: { eng: "Any", ua: "Будь-який" }, value: "any" },
   ...CONDITIONS,
+];
+
+export const CATEGORIES = [
+  {
+    title: "Skateboards",
+    value: "skateboards",
+    types: [
+      { title: "Decks", value: "decks" },
+      { title: "Trucks", value: "trucks" },
+      { title: "Wheels", value: "wheels" },
+      { title: "Other", value: "other" },
+      { title: "Completes", value: "completes" },
+    ],
+  },
+  {
+    title: "Shoes",
+    value: "shoes",
+    types: [
+      { title: "Leather", value: "leather" },
+      { title: "Seude", value: "seude" },
+      { title: "Canvas", value: "canvas" },
+    ],
+  },
 ];
 
 export {

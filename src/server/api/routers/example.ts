@@ -4,8 +4,8 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "~/server/api/trpc";
-import { deleteObject } from "~/utils/s3";
+} from "src/server/api/trpc";
+import { deleteObject } from "src/utils/s3";
 export const exampleRouter = createTRPCRouter({
   deleteObject: publicProcedure.mutation(async ({ input }) => {
     await deleteObject({

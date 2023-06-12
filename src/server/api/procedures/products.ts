@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { publicProcedure, protectedProcedure } from "~/server/api/trpc";
+import { publicProcedure, protectedProcedure } from "src/server/api/trpc";
 
 interface StringFilter {
   contains?: string;
@@ -8,11 +8,11 @@ interface StringFilter {
   mode?: "default" | "insensitive";
 }
 
-import { isProductOwner } from "~/utils/isProductOwner";
-import { setProductStatus } from "~/utils/setProductStatus";
-import { ProductSheme } from "~/server/models/products";
-import clearProps from "~/helpers/clearProps";
-import { AWS } from "~/utils/s3";
+import { isProductOwner } from "src/utils/isProductOwner";
+import { setProductStatus } from "src/utils/setProductStatus";
+import { ProductSheme } from "src/server/models/products";
+import clearProps from "src/helpers/clearProps";
+import { AWS } from "src/utils/s3";
 
 export namespace ProductProcedures {
   export const getInfiniteProducts = publicProcedure
@@ -82,15 +82,24 @@ export namespace ProductProcedures {
       const neededProduct = {
         where: { id: productId },
       };
-      const permitCondition = await isProductOwner({
+      const product = await isProductOwner({
         ctx,
         productId,
       });
-      if (permitCondition) {
+      const newPhotoKeys = input.photoKeys;
+
+      if (product) {
+        const oldPhotoKeys = product.photosKeys;
+        const notPresentArray = oldPhotoKeys.filter(
+          (element) => !newPhotoKeys.includes(element)
+        );
+        console.log(notPresentArray);
+        await Promise.all(notPresentArray.map((key) => AWS.deleteObject(key)));
         await ctx.prisma.product.update({
           ...neededProduct,
           data: { photosKeys: input.photoKeys },
         });
+
         await setProductStatus({ ctx, productId, isActive: true });
         return { succesfullyAsigned: true };
       }

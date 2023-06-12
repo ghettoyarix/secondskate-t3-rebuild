@@ -5,11 +5,11 @@ import React, {
   type SetStateAction,
   type Dispatch,
 } from "react";
-import type { DiscoverCondition } from "~/zustand/discover";
-import type { Option, SortOption } from "~/models/FilterOptions";
-import { chosenLanguage } from "~/helpers/parseTittle";
-import getTitle from "~/helpers/getTitle";
-import useOutsideHandler from "~/helpers/useOutsideHandler";
+import type { DiscoverCondition } from "src/zustand/discover";
+import type { Option, SortOption } from "src/models/FilterOptions";
+import { chosenLanguage } from "src/helpers/parseTittle";
+import getTitle from "src/helpers/getTitle";
+import useOutsideHandler from "src/helpers/useOutsideHandler";
 type DropDownOption = Option[] | SortOption[];
 
 type DropDownProps = {
@@ -31,7 +31,6 @@ const DropDown: FC<DropDownProps> = ({
 
   const onOptionClick = (obj: Option) => {
     pickOption(obj);
-    setSearchedValue(obj);
     setOpenFlag(false);
   };
   useOutsideHandler(wrapperRef, () => setOpenFlag(false));
@@ -52,32 +51,19 @@ const DropDown: FC<DropDownProps> = ({
           }}
           type="button"
           className="bg-whie text-sm  text-gray-700  hover:bg-gray-50 focus:ring-offset-gray-100 inline-flex 
-          h-12 w-full  items-center justify-center rounded-xl  px-4 font-medium shadow-sm outline 
-          outline-2 outline-gray 
-          focus:outline-none focus:ring-2     focus:ring-indigo-500 focus:ring-offset-2"
+          h-12 w-full  items-center justify-center rounded-xl  border border-2 border-gray px-4 
+          font-medium shadow-sm 
+          focus:border-none focus:ring-2     focus:ring-indigo-500 focus:ring-offset-2"
           id="menu-button"
           aria-expanded="true"
           aria-haspopup="true"
         >
-          <input
-            disabled={!searchable}
-            ref={inputRef}
-            defaultValue={
-              typeof chosenOption?.title === "string"
-                ? chosenOption.title
-                : chosenOption?.title?.[chosenLanguage]
-            }
-            value={
-              getTitle(searchedValue as Option, chosenLanguage) ||
-              (searchedValue as string)
-            }
-            onChange={(e) => {
-              console.log(e.target.value);
-              setSearchedValue(e.target.value);
-            }}
-            className="max-w-[140px] bg-white focus:outline-none"
-            type="text"
-          />
+          <p
+            defaultValue={getTitle(chosenOption as Option, chosenLanguage)}
+            className="max-w-[140px] bg-white focus:border-none"
+          >
+            {getTitle(chosenOption as Option, chosenLanguage) || ""}
+          </p>
           <div className="ml-auto h-5 min-w-[20px] rounded-full border ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,11 +83,22 @@ const DropDown: FC<DropDownProps> = ({
 
       {openFlag && (
         <div
-          className="absolute right-0 z-10 max-h-[200px] w-full	   origin-top-right overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="absolute right-0 z-10 max-h-[200px] w-full	   origin-top-right overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:border-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
         >
+          {searchable && (
+            <input
+              placeholder="Seaching for..."
+              value={searchedValue as string}
+              onChange={(e) => {
+                console.log(e.target.value);
+                setSearchedValue(e.target.value);
+              }}
+              className="w-full  overflow-hidden py-2   text-center text-reg text-black hover:bg-lightGray"
+            ></input>
+          )}
           <div className=" " role="none">
             {((options as Option[]) || (options as SortOption[]))
               .filter((obj: Option) =>

@@ -5,9 +5,9 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "~/server/api/trpc";
-import { UpdateProfileInfoScheme } from "~/server/models/user";
-import { AWS } from "~/utils/s3";
+} from "src/server/api/trpc";
+import { UpdateProfileInfoScheme } from "src/server/models/user";
+import { AWS } from "src/utils/s3";
 export const userRouter = createTRPCRouter({
   getPublicUserInfoByUsername: publicProcedure
     .input(z.object({ username: z.string().nullish() }))

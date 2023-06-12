@@ -1,6 +1,6 @@
 import { type } from "os";
 import React, { memo } from "react";
-import CircleLoader from "~/components/widgets/CircleLoader";
+import CircleLoader from "src/components/widgets/CircleLoader";
 
 import Image from "next/image";
 import Validator from "./Validator";
@@ -30,7 +30,7 @@ const LoginInput = ({
       <div className="flex items-center gap-2">
         <label
           htmlFor={name}
-          className="undefined block text-sm font-medium text-gray-700"
+          className="undefined text-sm text-gray-700 block font-medium"
         >
           {title}
         </label>
@@ -42,7 +42,7 @@ const LoginInput = ({
           onChange={onChange}
           type={type}
           name={name}
-          className="outline-gray border-lightGray mt-1 block w-full rounded-md shadow-sm outline outline-2 focus:border-indigo-300 focus:outline-primary focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border border-2 border-gray border-lightGray shadow-sm focus:border-indigo-300 focus:border-primary focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
         <p className="text-error">{errors?.join(" ")}</p>
       </div>

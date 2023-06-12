@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { type MessageWithAuthor } from "~/server/models/messages";
+import { type MessageWithAuthor } from "src/server/models/messages";
 const MessageUnit = ({ text, author }: MessageWithAuthor) => {
   return (
     <div className="chat chat-end">

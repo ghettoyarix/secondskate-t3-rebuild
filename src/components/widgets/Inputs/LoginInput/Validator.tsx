@@ -1,4 +1,4 @@
-import CircleLoader from "~/components/widgets/CircleLoader";
+import CircleLoader from "src/components/widgets/CircleLoader";
 import React from "react";
 import Image from "next/image";
 type ValidatorProps = {

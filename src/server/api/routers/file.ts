@@ -4,9 +4,9 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "~/server/api/trpc";
-import { AWS } from "~/utils/s3";
-import { PresignedLinkScheme } from "~/server/models/general";
+} from "src/server/api/trpc";
+import { AWS } from "src/utils/s3";
+import { PresignedLinkScheme } from "src/server/models/general";
 export const fileRouter = createTRPCRouter({
   getPresignedLink: protectedProcedure
     .input(PresignedLinkScheme)

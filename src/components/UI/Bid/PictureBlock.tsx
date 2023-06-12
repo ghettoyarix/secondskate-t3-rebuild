@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import NoPhoto from "../NoPhoto";
-import { getImageUrl } from "~/helpers/getImageUrl";
+import { getImageUrl } from "src/helpers/getImageUrl";
 import Link from "next/link";
-import RemoveBid from "~/components/UI/Bid/RemoveBid";
-import { type ProductWithOwner } from "~/server/models/products";
-import { useBidContext } from "~/context/BidContext";
+import RemoveBid from "src/components/UI/Bid/RemoveBid";
+import { type ProductWithOwner } from "src/server/models/products";
+import { useBidContext } from "src/context/BidContext";
 import { useRouter } from "next/router";
 const PictureBlock = () => {
   const router = useRouter();
@@ -30,8 +30,12 @@ const PictureBlock = () => {
     setDeletionInitiated(true);
   };
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    console.log(route);
-    if (route.includes("edit") || route.includes("upload")) {
+    console.log(previewImage);
+    if (
+      route.includes("edit") ||
+      route.includes("upload") ||
+      route.includes("you")
+    ) {
       e.preventDefault();
     }
   };
@@ -55,8 +59,9 @@ const PictureBlock = () => {
                 fill
                 sizes="(max-width: 256px) 100vw,50vw,33vw"
                 src={
-                  previewImage ||
                   (photosKeys[0] && getImageUrl(photosKeys[0])) ||
+                  (photosKeys[0] instanceof File &&
+                    URL.createObjectURL(photosKeys[0])) ||
                   "/no-photo.svg"
                 }
               ></Image>

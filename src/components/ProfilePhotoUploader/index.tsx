@@ -3,8 +3,8 @@ import Image from "next/image";
 import Dropzone from "react-dropzone";
 import Button from "../UI/Button";
 import { useSession } from "next-auth/react";
-import { useUpdateProfilePhoto } from "~/hooks/useUpdateProfilePhoto";
-import { getImageUrl } from "~/helpers/getImageUrl";
+import { useUpdateProfilePhoto } from "src/hooks/useUpdateProfilePhoto";
+import { getImageUrl } from "src/helpers/getImageUrl";
 import Router from "next/router";
 const ProfilePhotoUploader = () => {
   const { updateProfilePhotoMutation } = useUpdateProfilePhoto();

@@ -4,11 +4,11 @@ import { useState } from "react";
 
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { api } from "~/utils/api";
+import { api } from "src/utils/api";
 import type { User } from "@prisma/client";
-import Discover from "~/components/Discover";
-import { useDiscoverStore } from "~/zustand";
-import ProfileBar from "~/components/ProfileBar";
+import Discover from "src/components/Discover";
+import { useDiscoverStore } from "src/zustand";
+import ProfileBar from "src/components/ProfileBar";
 import { useEffect } from "react";
 const Profile = () => {
   const x = useDiscoverStore();

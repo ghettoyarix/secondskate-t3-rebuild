@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Label from "~/components/UI/Label";
+import Label from "src/components/UI/Label";
 import cn from "classnames";
-import HyperLink from "~/components/widgets/HyperLink";
-import { parseBidTitle } from "~/helpers/parseTittle";
+import HyperLink from "src/components/widgets/HyperLink";
+import { parseBidTitle } from "src/helpers/parseTittle";
 import { useRouter } from "next/router";
-import moveToStart from "~/helpers/moveToStart";
-import { api } from "~/utils/api";
-import { type ProductWithOwner } from "~/server/models/products";
-import { getImageUrl } from "~/helpers/getImageUrl";
+import moveToStart from "src/helpers/moveToStart";
+import { api } from "src/utils/api";
+import { type ProductWithOwner } from "src/server/models/products";
+import { getImageUrl } from "src/helpers/getImageUrl";
 
 const productPage = () => {
   const router = useRouter();

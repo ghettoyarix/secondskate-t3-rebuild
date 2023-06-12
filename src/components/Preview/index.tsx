@@ -1,6 +1,6 @@
 import React from "react";
 import Bid from "../UI/Bid";
-import { useUpload } from "~/context/UploadContext";
+import { useUpload } from "src/context/UploadContext";
 
 const Preview = () => {
   const {
@@ -10,6 +10,7 @@ const Preview = () => {
     chosenCondition,
     mainPhoto,
     formData,
+    mergedArray,
   } = useUpload();
 
   return (
@@ -27,10 +28,9 @@ const Preview = () => {
         price={formData.price}
         category={chosenCategory?.value}
         type={chosenType?.value}
-        previewImage={mainPhoto}
         title={formData.title}
         still
-        photosKeys={[...mainPhoto]}
+        photosKeys={mergedArray as string[]}
         isActive={false}
         createdAt={new Date()}
         updatedAt={new Date()}

@@ -1,18 +1,25 @@
-import { api } from "~/utils/api";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { api } from "src/utils/api";
 
-import { useDiscoverStore } from "~/zustand";
+import { useDiscoverStore } from "src/zustand";
 const useFetchProducts = () => {
+  const router = useRouter();
   const {
     chosenCategory,
     chosenCondition,
     chosenSorter,
     uploadedBy,
     priceRange,
+    reset,
+    setUploader,
+    title,
   } = useDiscoverStore();
   const {
     data,
     fetchNextPage,
     isFetching: isLoading,
+    refetch,
   } = api.product.getInfiniteProducts.useInfiniteQuery(
     {
       limit: 8,
@@ -25,13 +32,21 @@ const useFetchProducts = () => {
       maxPrice: priceRange.max || 9999,
       minPrice: priceRange.min || 0,
       uploadedBy,
+      title,
     },
     {
       getNextPageParam: (lastPage) => lastPage?.nextCursor,
+      refetchOnWindowFocus: false,
     }
   );
+  useEffect(() => {
+    reset();
+    if (router.asPath === "/") {
+      setUploader("");
+    }
+  }, [reset, router]);
 
-  return { data, fetchNextPage, isLoading };
+  return { data, fetchNextPage, isLoading, refetch };
 };
 
 export default useFetchProducts;

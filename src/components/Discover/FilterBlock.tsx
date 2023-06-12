@@ -1,11 +1,11 @@
 import React from "react";
-import DropDown from "~/components/UI/DropDown";
-import RangeSlider from "~/components/UI/RangeSlider";
+import DropDown from "src/components/UI/DropDown";
+import RangeSlider from "src/components/UI/RangeSlider";
 import DropDownBlock from "./DropDownBlock";
-import { DISCOVER_CONDITIONS, SORT_OPTIONS } from "~/constants/index";
-import { useDiscoverStore } from "~/zustand";
-import type { DiscoverCondition } from "~/zustand/discover";
-import type { SortOption, Option } from "~/models/FilterOptions";
+import { DISCOVER_CONDITIONS, SORT_OPTIONS } from "src/constants/index";
+import { useDiscoverStore } from "src/zustand";
+import type { DiscoverCondition } from "src/zustand/discover";
+import type { SortOption, Option } from "src/models/FilterOptions";
 const FilterBlock = () => {
   const {
     chosenSorter,
@@ -17,8 +17,8 @@ const FilterBlock = () => {
 
   return isFilterShown ? (
     <div
-      className="x my-8 grid h-fit grid-cols-1 place-items-center 
-    gap-y-4 text-[12px]  font-bold text-gray transition-all xs:grid-cols-2 tab:grid-cols-3"
+      className="my-8 grid h-fit grid-cols-1 place-items-center gap-y-4 
+     text-[12px]  font-bold text-gray transition-all xs:grid-cols-2 tab:grid-cols-3"
     >
       <DropDownBlock title="sort by :">
         <DropDown

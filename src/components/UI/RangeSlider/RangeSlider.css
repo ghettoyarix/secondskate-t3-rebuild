@@ -54,7 +54,7 @@
   position: absolute;
   height: 0;
   width: 748px;
-  outline: none;
+  border: none;
 }
 
 .thumb--left {

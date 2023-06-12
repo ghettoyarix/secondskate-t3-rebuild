@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { type ReactNode } from "react";
-import { type ProductWithOwner } from "~/server/models/products";
+import { type ProductWithOwner } from "src/server/models/products";
 import { useRouter } from "next/router";
 import { profile } from "console";
 interface BidContextType {

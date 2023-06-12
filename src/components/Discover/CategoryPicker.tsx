@@ -1,26 +1,31 @@
 import React from "react";
-import { discoverCategories } from "~/constants/options";
+import { discoverCategories } from "src/constants/options";
 import cn from "classnames";
-import { useDiscoverStore } from "~/zustand/discover";
-import type { DiscoverOption } from "~/models/FilterOptions";
+import { useDiscoverStore } from "src/zustand/discover";
+import type { DiscoverOption } from "src/models/FilterOptions";
+
 const CategoryPicker = () => {
+  const CATEGORIES = discoverCategories.map((opt: DiscoverOption) => {
+    return { ...opt, pic: opt.category || opt.type };
+  });
   const { setChosenCategory, chosenCategory } = useDiscoverStore();
   return (
-    <div className="flex min-w-[300px] flex-wrap gap-3 ">
-      {discoverCategories.map((obj: DiscoverOption, i) => (
-        <p
+    <div className="  min-w-[300px flex w-full justify-between gap-4 ">
+      {CATEGORIES.map((obj, i) => (
+        <div
           key={i}
           onClick={() => setChosenCategory(obj)}
           className={cn(
-            "  my-auto cursor-pointer  whitespace-nowrap  	 rounded-2xl px-3  py-[6px]   text-reg font-bold ",
+            "my-auto  flex h-[200px]  w-full cursor-pointer flex-col items-center   justify-center gap-6 whitespace-nowrap rounded-xl     text-reg font-bold ",
             {
-              "bg-black text-white": obj.title === chosenCategory.title,
+              "bg-primary text-white": obj.title === chosenCategory.title,
               "hover:bg-lightGray	": obj.title !== chosenCategory.title,
             }
           )}
         >
-          {obj.title as string}
-        </p>
+          <div className="h-20 w-20 rounded-full bg-black"></div>
+          <p className="text-mid">{obj.title as string}</p>
+        </div>
       ))}
       <br />
     </div>

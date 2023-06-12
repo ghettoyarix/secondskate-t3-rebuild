@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { devtools } from "zustand/middleware";
 import { type Product } from "@prisma/client";
-import { ProductWithOwner } from "~/server/models/products";
+import { ProductWithOwner } from "src/server/models/products";
 
 interface State {
   products: ProductWithOwner[];

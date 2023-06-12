@@ -3,8 +3,8 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient } from "@tanstack/react-query";
-import { api } from "~/utils/api";
-import Layout from "~/components/Layout";
+import { api } from "src/utils/api";
+import Layout from "src/components/Layout";
 import "~/styles/globals.css";
 
 const MyApp: AppType<{ session: Session | null }> = ({

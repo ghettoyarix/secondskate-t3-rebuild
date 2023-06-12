@@ -5,9 +5,9 @@ import React, {
   type SetStateAction,
   useEffect,
 } from "react";
-import { CONDITIONS } from "~/constants/index";
-import { type Option } from "~/models/FilterOptions";
-import formChangeHandler from "~/helpers/formChangeHandler";
+import { CONDITIONS } from "src/constants/index";
+import { type Option } from "src/models/FilterOptions";
+import formChangeHandler from "src/helpers/formChangeHandler";
 import { z } from "zod";
 export const FormDataScheme = z.object({
   title: z.string().max(25),
@@ -17,8 +17,8 @@ export const FormDataScheme = z.object({
 });
 import Router from "next/router";
 type FormData = z.infer<typeof FormDataScheme>;
-import type { UploadCategory, UploadType } from "~/models/Upload";
-import { ProductWithOwner } from "~/server/models/products";
+import type { UploadCategory, UploadType } from "src/models/Upload";
+import { ProductWithOwner } from "src/server/models/products";
 
 type UploadContextType = {
   // state related to selected files
@@ -58,6 +58,9 @@ type UploadContextType = {
   handleChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+
+  mergedArray: (string | File)[];
+  setMergedArray: Dispatch<SetStateAction<(string | File)[]>>;
 
   // list of available categories
   categories: UploadCategory[];
@@ -119,6 +122,17 @@ export function UploadProvider({
     formChangeHandler(event, formData, setFormData);
   };
 
+  const [mergedArray, setMergedArray] = useState<(string | File)[]>([]);
+
+  // Initialize mergedArray with product.photosKeys if it exists
+  useEffect(() => {
+    if (product?.photosKeys) {
+      setMergedArray([...files, ...product?.photosKeys]);
+    } else {
+      setMergedArray(files);
+    }
+  }, [product?.photosKeys, files]);
+
   useEffect(() => {
     if (Router.asPath.includes("edit")) {
       setupdateMod(true);
@@ -149,6 +163,8 @@ export function UploadProvider({
     setupdateMod,
     product,
     setFormData,
+    mergedArray,
+    setMergedArray,
   };
 
   return (

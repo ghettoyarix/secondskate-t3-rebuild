@@ -8,8 +8,8 @@ import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from "next-auth/providers/google";
 
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { env } from "~/utils/env.mjs";
-import { prisma } from "~/server/db";
+import { env } from "src/utils/env.mjs";
+import { prisma } from "src/server/db";
 import type { User as PrismaUser } from "@prisma/client";
 
 /**

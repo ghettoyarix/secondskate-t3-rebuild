@@ -1,10 +1,10 @@
 import React from "react";
-import Loader from "~/components/widgets/SearchBar/SearchWindow/Loader";
+import Loader from "src/components/widgets/SearchBar/SearchWindow/Loader";
 import Image from "next/image";
-import Label from "~/components/UI/Label";
+import Label from "src/components/UI/Label";
 import Link from "next/link";
-import { useHeader } from "~/context/HeaderContext";
-import { getImageUrl } from "~/helpers/getImageUrl";
+import { useHeader } from "src/context/HeaderContext";
+import { getImageUrl } from "src/helpers/getImageUrl";
 const ProductsBlock = () => {
   const { productsFound, totalProducts, isLoading } = useHeader();
 

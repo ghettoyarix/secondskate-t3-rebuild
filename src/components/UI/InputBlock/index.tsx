@@ -25,7 +25,7 @@ const InputBlock: React.FC<InputBlockProps> = ({
         value={value || ""}
         onChange={onChange}
         className={cn(
-          "h-12 w-full rounded-xl px-2 outline outline-2 outline-gray focus:outline-primary",
+          "h-12 w-full rounded-xl   border-2 border-gray px-2 focus:border-primary",
           { "mt-0 h-20": big }
         )}
         placeholder={placeholder}

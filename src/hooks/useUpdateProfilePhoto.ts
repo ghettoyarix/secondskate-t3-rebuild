@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { uploadFile } from "~/utils/uploadFile";
-import { api } from "~/utils/api";
+import { uploadFile } from "src/utils/uploadFile";
+import { api } from "src/utils/api";
 export const useUpdateProfilePhoto = () => {
   const { mutateAsync: getPresignedLink } =
     api.file.getPresignedLink.useMutation();

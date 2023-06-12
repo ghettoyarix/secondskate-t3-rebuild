@@ -1,4 +1,4 @@
-import { type Context } from "~/server/api/trpc";
+import { type Context } from "src/server/api/trpc";
 import { isProductOwner } from "./isProductOwner";
 export const setProductStatus = async ({
   ctx,

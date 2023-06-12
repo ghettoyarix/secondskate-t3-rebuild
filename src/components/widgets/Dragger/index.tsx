@@ -6,20 +6,26 @@ import {
 } from "react-beautiful-dnd";
 import Image from "next/image";
 import { StrictModeDroppable } from "./StrictDropable";
-
+import { getImageUrl } from "src/helpers/getImageUrl";
+import { useUpload } from "src/context/UploadContext";
+type Arr = (File | string)[];
 interface DraggerProps {
-  providedArray: File[];
-  updateArray: (newArray: File[]) => void;
-  removeItem: (item: File) => void;
+  providedArray: Arr;
+  updateArray: (newArray: Arr) => void;
+  removeItem: (item: File | string) => void;
 }
 
 function Dragger({ providedArray, updateArray, removeItem }: DraggerProps) {
+  const { product } = useUpload();
   function handleOnDragEnd(result: DropResult) {
     if (!result.destination) return;
 
     const items = Array.from(providedArray);
     const [reorderedItem] = items.splice(result.source.index, 1);
+
     items.splice(result.destination.index, 0, reorderedItem!);
+    console.log(items);
+    console.log("heer");
 
     updateArray(items);
   }
@@ -30,15 +36,15 @@ function Dragger({ providedArray, updateArray, removeItem }: DraggerProps) {
           <StrictModeDroppable droppableId="characters" direction="horizontal">
             {(provided) => (
               <div
-                className="grid grid-cols-4"
+                className=" grid min-w-[375px] max-w-[640px] grid-cols-4 bg-primary"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {providedArray.map((file, index) => {
+                {[...providedArray].map((file, index) => {
                   return (
                     <Draggable
-                      key={file.name}
-                      draggableId={file.name}
+                      key={file instanceof File ? file.name : file}
+                      draggableId={file instanceof File ? file.name : file}
                       index={index}
                     >
                       {(provided) => (
@@ -48,12 +54,16 @@ function Dragger({ providedArray, updateArray, removeItem }: DraggerProps) {
                           {...provided.dragHandleProps}
                           className="relative "
                         >
-                          <div className=" relative 	    mb-3 h-[156px]  w-[156px]">
+                          <div className=" relative  mb-3 h-[156px]  w-[156px]">
                             <Image
                               alt="preview"
                               className="rounded-md object-cover"
                               fill
-                              src={URL.createObjectURL(file)}
+                              src={
+                                file instanceof File
+                                  ? URL.createObjectURL(file)
+                                  : getImageUrl(file) || "/svg/no-photo.svg"
+                              }
                             ></Image>
                           </div>
 

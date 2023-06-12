@@ -1,26 +1,26 @@
-import React from 'react';
-import Image from 'next/image';
-import cn from 'classnames';
+import React from "react";
+import Image from "next/image";
+import cn from "classnames";
 const Footer = () => {
   const menu = [
     [
-      { title: 'secondskate.' },
-      { title: 'Disover', href: 'discover' },
-      { title: 'Connect Wallet', href: 'discover' },
-      { title: 'Create item', href: 'createItem' },
+      { title: "secondskate." },
+      { title: "Disover", href: "discover" },
+      { title: "Connect Wallet", href: "discover" },
+      { title: "Create item", href: "createItem" },
     ],
     [
-      { title: 'Info ' },
-      { title: 'Download', href: 'download' },
-      { title: 'Demos', href: 'demos' },
-      { title: 'Support', href: 'support' },
+      { title: "Info " },
+      { title: "Download", href: "download" },
+      { title: "Demos", href: "demos" },
+      { title: "Support", href: "support" },
     ],
   ];
   return (
     <div className="border-t-2 border-lightGray">
-      <div className="wrapper mt-20 mb-12 items-center gap-6  flex-col mob:flex-row flex justify-between">
+      <div className="wrapper mb-12 mt-20 flex flex-col  items-center justify-between gap-6 mob:flex-row">
         <div className="flex flex-col  justify-center">
-          <div className="flex justify-start mob:justify-center gap-2 mb-8">
+          <div className="mb-8 flex justify-start gap-2 mob:justify-center">
             <Image alt="logo" src="/logo.png" height={32} width={32}></Image>
             <p className="text-mid font-bold">secondskate</p>
           </div>
@@ -29,31 +29,39 @@ const Footer = () => {
           </p>
         </div>
         {menu.map((obj, i) => (
-          <div key={i} className="flex items-start text-reg text-left  flex-col gap-6">
+          <div
+            key={i}
+            className="flex flex-col items-start gap-6  text-left text-reg"
+          >
             {obj.map((obj) => (
               <p
                 key={obj.title}
-                className={cn('cursor-pointer ', {
-                  ' text-lable font-[500] cursor-default': !obj.href,
-                })}>
+                className={cn("cursor-pointer ", {
+                  " cursor-default text-lable font-[500]": !obj.href,
+                })}
+              >
                 {obj.title}
               </p>
             ))}
           </div>
         ))}
-        <div className="w-[352px] flex flex-col justify-between">
+        <div className="flex w-[352px] flex-col justify-between">
           <p className="font-[500]">Join Newsletter</p>
           <p className="text-reg">
             Subscribe our newsletter to get more free design course and resource
           </p>
-          <div className="flex justify-between border rounded-full border-lightGray h-12 items-center px-3">
-            <input placeholder="Enter your email" className=" text-reg w-full focus:outline-none" />
+          <div className="flex h-12 items-center justify-between rounded-full border border-lightGray px-3">
+            <input
+              placeholder="Enter your email"
+              className=" w-full text-reg focus:border-none"
+            />
             <svg
               width="32"
               height="32"
               viewBox="0 0 32 32"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <rect width="32" height="32" rx="16" fill="#3772FF" />
               <path
                 fillRule="evenodd"

@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
-import DropDown from "~/components/UI/DropDown/";
-import { CONDITIONS } from "~/constants";
+import DropDown from "src/components/UI/DropDown";
+import { CONDITIONS } from "src/constants";
 
-import InputBlock from "~/components/UI/InputBlock";
+import InputBlock from "src/components/UI/InputBlock";
 
-import CategoryPicker from "~/components/UI/CategoryPicker";
+import CategoryPicker from "src/components/UI/CategoryPicker";
 
 import { BRANDS } from "../../constants";
-import { useUpload } from "~/context/UploadContext";
-import useDisableScrollOnInput from "~/helpers/useDisableInputScroll";
+import { useUpload } from "src/context/UploadContext";
+import useDisableScrollOnInput from "src/helpers/useDisableInputScroll";
 const DetailsBlock = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   useDisableScrollOnInput(inputRef);
@@ -23,14 +23,14 @@ const DetailsBlock = () => {
   } = useUpload();
 
   return (
-    <div className="mb-10 flex flex-col gap-6 border-b-2 border-lightGray pb-10">
+    <div className="mb-10 flex flex-col   gap-6 border-b-2 border-lightGray pb-10">
       <p className="text-lable font-bold ">Item Details</p>
       <p className="text-small text-gray">
         The obligatory fields are marked with a
         <span className="text-lable">*</span>
       </p>
       <p className="text-mid text-error">{}</p>
-      <div className="flex justify-between">
+      <div className="flex flex-wrap justify-between">
         <div>
           <p className="text-grays mb-3 text-small font-bold uppercase text-gray">
             Item name*
@@ -39,7 +39,7 @@ const DetailsBlock = () => {
             onChange={handleChange}
             value={formData?.title}
             name="title"
-            className=" h-12 w-[520px] rounded-xl px-2 outline outline-2 outline-gray focus:outline-primary"
+            className=" h-12 max-w-[520px] rounded-xl   border-2 border-gray px-2 focus:border-primary"
             placeholder='e. g. "Redeemable Bitcoin Card with logo"'
           />
         </div>
@@ -53,7 +53,7 @@ const DetailsBlock = () => {
             type="number"
             name="price"
             value={formData?.price || ""}
-            className="  h-12 w-[100px] rounded-xl px-2 outline outline-2 outline-gray focus:outline-primary"
+            className="  h-12 rounded-xl border-2   border-gray px-2 focus:border-primary xs:w-[100px]"
             placeholder="40 UAH"
           />
         </div>
@@ -68,12 +68,12 @@ const DetailsBlock = () => {
           maxLength={200}
           value={formData?.description || ""}
           onChange={handleChange}
-          className=" h-12 w-[640px] rounded-xl px-2 outline outline-2 outline-gray focus:outline-primary"
+          className=" h-12 w-full max-w-[640px] rounded-xl   border-2 border-gray px-2 focus:border-primary"
           placeholder="e. g. “After purchasing you will able to recived the logo"
         />
       </div>{" "}
       <CategoryPicker></CategoryPicker>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="flex flex-wrap gap-4">
         <div>
           <p className="text-grays mb-3 text-small font-bold uppercase text-gray">
             Brands

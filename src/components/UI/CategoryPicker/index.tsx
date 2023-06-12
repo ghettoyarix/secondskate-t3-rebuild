@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
+import { CATEGORIES } from "src/constants";
 
-import { useUpload } from "~/context/UploadContext";
-import { UploadCategory } from "~/models/Upload";
+import { useUpload } from "src/context/UploadContext";
+import { UploadCategory } from "src/models/Upload";
 const Uploader = () => {
   const isFirstRender = useRef(true);
 

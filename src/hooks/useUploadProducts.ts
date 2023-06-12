@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { uploadFile } from "~/utils/uploadFile";
-import { api } from "~/utils/api";
-import { type UploadProductInput } from "~/server/models/products";
+import { uploadFile } from "src/utils/uploadFile";
+import { api } from "src/utils/api";
+import { type UploadProductInput } from "src/server/models/products";
 export const useUploadProducts = () => {
   const { mutateAsync: getPresignedLink } =
     api.file.getPresignedLink.useMutation();
@@ -10,6 +10,22 @@ export const useUploadProducts = () => {
   const { mutateAsync: asignPhotoKeys } =
     api.product.asignPhotoKeys.useMutation();
   type uploadProductArgs = { files: File[]; data: UploadProductInput };
+  type UploadFileArgs = { file: File; unitId: string };
+  const uploadFileWithPresignedLink = async (data: UploadFileArgs) => {
+    const { file, unitId } = data;
+    const presignedLink = await getPresignedLink({
+      fileType: file.type,
+      folderName: "productPhotos",
+      unitId: unitId,
+    });
+
+    await uploadFile({
+      file: file,
+      url: presignedLink.URL,
+    });
+    return presignedLink.key;
+  };
+
   const uploadProduct = async ({ files, data }: uploadProductArgs) => {
     try {
       const photoKeys: string[] = [];
@@ -18,16 +34,11 @@ export const useUploadProducts = () => {
 
       await Promise.all(
         files.map(async (file) => {
-          const presignedLink = await getPresignedLink({
-            fileType: file.type,
-            folderName: "productPhotos",
+          const newFileKey = await uploadFileWithPresignedLink({
+            file,
             unitId: newProduct.id,
           });
-          photoKeys.push(presignedLink.key);
-          await uploadFile({
-            file: file,
-            url: presignedLink.URL,
-          });
+          photoKeys.push(newFileKey);
         })
       ).then(async () => {
         await asignPhotoKeys({ photoKeys, productId: newProduct.id });
@@ -36,7 +47,10 @@ export const useUploadProducts = () => {
       console.log(error);
     }
   };
-  const uploadProductMutation = useMutation(["uploadFile"], uploadProduct);
-
-  return { uploadProductMutation };
+  const uploadProductMutation = useMutation(["uploadProduct"], uploadProduct);
+  const uploadFileMutation = useMutation(
+    ["uploadFile"],
+    uploadFileWithPresignedLink
+  );
+  return { uploadProductMutation, uploadFileMutation };
 };

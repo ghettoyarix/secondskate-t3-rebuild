@@ -1,11 +1,11 @@
 import React, { ChangeEventHandler, useEffect, useRef, useState } from "react";
-import Button from "~/components/UI/Button";
-import InputBlock from "~/components/UI/InputBlock";
-import ProfilePhotoUploader from "~/components/ProfilePhotoUploader";
+import Button from "src/components/UI/Button";
+import InputBlock from "src/components/UI/InputBlock";
+import ProfilePhotoUploader from "src/components/ProfilePhotoUploader";
 import { useSession } from "next-auth/react";
-import { api } from "~/utils/api";
-import formChangeHandler from "~/helpers/formChangeHandler";
-import { type UpdateProfileInfoType } from "~/server/models/user";
+import { api } from "src/utils/api";
+import formChangeHandler from "src/helpers/formChangeHandler";
+import { type UpdateProfileInfoType } from "src/server/models/user";
 const Edit = ({}) => {
   const { data: profile } = useSession();
   const user = profile?.user;

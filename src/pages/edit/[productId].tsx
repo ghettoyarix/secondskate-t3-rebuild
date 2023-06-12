@@ -1,8 +1,8 @@
 import React from "react";
-import BidEditor from "~/components/BidEditor";
+import BidEditor from "src/components/BidEditor";
 import UploadPage from "../upload";
 import { useRouter } from "next/router";
-import { api } from "~/utils/api";
+import { api } from "src/utils/api";
 const EditPage = () => {
   const router = useRouter();
   const { productId } = router.query;

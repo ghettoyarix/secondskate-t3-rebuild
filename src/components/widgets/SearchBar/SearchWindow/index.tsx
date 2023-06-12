@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { useHeader } from "~/context/HeaderContext";
+import { useHeader } from "src/context/HeaderContext";
 
-import useOutsideHandler from "~/helpers/useOutsideHandler";
+import useOutsideHandler from "src/helpers/useOutsideHandler";
 import ProductsBlock from "./ProductsBlock";
 const SearchWindow = ({ searched }: { searched: string | null }) => {
   const { setOpenFlag, setSearchedValue, openFlag, searchedValue } =

@@ -6,10 +6,10 @@ import type {
   SortOption,
   DiscoverOption,
   Option,
-} from "~/models/FilterOptions";
-import { SORT_OPTIONS, DISCOVER_CONDITIONS } from "~/constants/index";
-import { discoverCategories } from "~/constants/options";
-import { type ConditionValues } from "~/server/models/products";
+} from "src/models/FilterOptions";
+import { SORT_OPTIONS, DISCOVER_CONDITIONS } from "src/constants/index";
+import { discoverCategories } from "src/constants/options";
+import { type ConditionValues } from "src/server/models/products";
 export type PriceRange = {
   min: number | null;
   max: number | null;
@@ -24,6 +24,7 @@ type State = {
   isFilterShown: boolean;
   priceRange: PriceRange;
   uploadedBy?: string | null;
+  title?: string | null;
 };
 
 const initialState: State = {
@@ -33,6 +34,7 @@ const initialState: State = {
   isFilterShown: false,
   priceRange: { max: null, min: null },
   uploadedBy: null,
+  title: null,
 };
 
 type Actions = {
@@ -43,6 +45,7 @@ type Actions = {
   setPriceRange: (priceRange: PriceRange) => void;
   setUploader: (id: string) => void;
   reset: () => void;
+  setTitle: (id: string) => void;
 };
 
 export const useDiscoverStore = create(
@@ -76,6 +79,10 @@ export const useDiscoverStore = create(
       setUploader: (id: string) =>
         set((state) => {
           state.uploadedBy = id;
+        }),
+      setTitle: (title: string) =>
+        set((state) => {
+          state.title = title;
         }),
       reset: () => {
         // Do something with the state before resetting it

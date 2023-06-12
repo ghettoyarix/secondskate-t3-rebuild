@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { Title } from "~/models/FilterOptions";
+import { Title } from "src/models/FilterOptions";
 type DropDownBlockProps = {
   children: ReactNode;
   title: Title;

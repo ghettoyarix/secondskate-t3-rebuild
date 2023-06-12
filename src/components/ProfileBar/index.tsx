@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { User } from "@prisma/client";
 import Button from "../UI/Button";
-import { getImageUrl } from "~/helpers/getImageUrl";
+import { getImageUrl } from "src/helpers/getImageUrl";
 const ProfileBar = ({
   info,
   isYourOwnAccount,
